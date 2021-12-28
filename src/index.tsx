@@ -1,30 +1,38 @@
 import * as React from 'react'
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 // Pages
 import HomeScreen from './pages/HomeScreen'
 import DiaryScreen from './pages/DiaryScreen'
 import ProfileScreen from './pages/ProfileScreen'
+import SettingsScreen from './pages/SettingsScreen'
 
-const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
 
-export default function index() {
+export default function Index() {
     return(
-        <Stack.Navigator>
-            <Stack.Screen
+        <Tab.Navigator
+        screenOptions = {{
+            headerShown: false
+        }}
+        >
+            <Tab.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{ title: "Welcome" }}
             />
-            <Stack.Screen
+            <Tab.Screen
                 name="Diary"
                 component={DiaryScreen}
             />
-            <Stack.Screen
+            <Tab.Screen
                 name="Profile"
                 component={ProfileScreen}
             />
-        </Stack.Navigator>
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen}
+            />
+        </Tab.Navigator>
     )    
 }
 
