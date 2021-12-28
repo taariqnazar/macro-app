@@ -15,26 +15,25 @@ export default function FoodDiary() {
 
 function Meal({meal}){
     return(
-        <View>
-            <Text>Item</Text> 
+        <View style = {styles.meal}>
+        {meal.items.map((item, index) => (
+            <View>
+                <Text>{item.name}</Text>
+            </View>
+        ))}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-    padding: 20,
-    margin: 5,
     marginTop: 10
     },
-    macrosContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 10,
+    meal: {
+    backgroundColor: "#fff",
+    padding: 10,
+    margin: 5,
     },
-    macro: {
-        alignItems: 'center'
-    }
 }) 
 
 

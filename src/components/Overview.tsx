@@ -1,6 +1,7 @@
 import * as React from "react"
 import { View, Text, StyleSheet } from 'react-native';
 import { caloriesFromMacro } from "../utils/utils"
+
 // Example data
 import { data } from "../data/data"
 

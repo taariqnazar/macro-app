@@ -37,5 +37,5 @@ const meal2 = {
 
 export const meals = [
     meal1,
-    meal2
+    meal1,
 ]
