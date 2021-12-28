@@ -1,6 +1,6 @@
 import * as React from "react"
 import { View, Text, StyleSheet } from 'react-native';
-
+import { caloriesFromMacro } from "../utils/utils"
 // Example data
 import { data } from "../data/data"
 
@@ -35,9 +35,6 @@ const Total = ({done, total}) => {
           )
 }
 
-function caloriesFromMacro(protein, carbohydrates, fat) {
-    return 4*protein + 4*carbohydrates + 9*fat
-}
 
 const styles = StyleSheet.create({
     container: {
