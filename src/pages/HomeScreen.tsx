@@ -4,9 +4,9 @@ import { Button } from 'react-native';
 export default function HomeScreen({ navigation }) {
     return (
         <Button
-            title="Go to my profile"
+            title="Go to my diary"
             onPress={() =>
-                navigation.navigate('Profile', {name: 'Tariq'})
+                navigation.navigate('Diary', {name: 'Tariq'})
             }
         />
    );
