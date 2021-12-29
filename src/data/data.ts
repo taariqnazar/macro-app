@@ -5,7 +5,7 @@ const item = {
     name: 'Popsicle',
     macronutrients: {
         protein: 20,
-        carbohyrates: 40,
+        carbohydrates: 40,
         fat: 2
     }
 }
@@ -29,31 +29,12 @@ export const new_data = {
             weight: 95,
             macronutrients: {
                 protein: 105,
-                carbohyrates: 105,
+                carbohydrates: 105,
                 fat: 30,
             },
             micronutrients: {}
         }
     },
     settings: {}
-}
-
-export const data = {
-    today: {
-        macronutrients: {
-            protein: {
-                total: 150,
-                done: 0
-            },
-            carbohyrates: {
-                total: 150,
-                done: 0
-            },
-            fats: {
-                total: 150,
-                done: 0
-            },
-        }
-    }
 }
 

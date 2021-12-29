@@ -1,27 +1,30 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { caloriesFromMacro } from "../utils/utils"
-
-// Example data
-import { data } from "../data/data"
+import { useStore } from "../store"
+import { caloriesFromMacro, getMacrosFromMeals} from "../utils/utils"
 
 export default function Overview() {
-    let macronutrients = data.today.macronutrients
-    let done = caloriesFromMacro(macronutrients.protein.done, macronutrients.carbohyrates.done, macronutrients.fats.done)
-    let total = caloriesFromMacro(macronutrients.protein.total , macronutrients.carbohyrates.total, macronutrients.fats.total)   
+    const [globalState, dispatch] = useStore()
+
+    let macronutrients = getMacrosFromMeals(globalState.user.diary)
+    let macronutrientsTarget = globalState.user.targets.macronutrients
+    let caloriesDone = caloriesFromMacro(macronutrients)
+    let caloriesTarget = caloriesFromMacro(macronutrientsTarget)   
 
     return (
            <View style = {styles.container} >
-                <Total done={done} total={total}/>
-                <Macros macronutrients = {macronutrients}/>
+                <Total caloriesDone={caloriesDone} caloriesTarget={caloriesTarget}/>
+                <Macros macronutrients={macronutrients} macronutrientsTarget={macronutrientsTarget}/>
            </View>
     )
 }
-function Macros({macronutrients}) {
+
+
+function Macros({macronutrients, macronutrientsTarget}) {
     return(
        <View style = {styles.macrosContainer}>
-           {Object.entries(macronutrients).map(([key, value]) => (
+           {Object.entries(macronutrients).map(([key, _]) => (
                 <View style = {styles.macro}>
-                    <Text>{value.done}/{value.total}</Text>
+                    <Text>{macronutrients[key]}/{macronutrientsTarget[key]}</Text>
                     <Text>{key}</Text>
                 </View>
            ))}
@@ -29,9 +32,9 @@ function Macros({macronutrients}) {
           ) 
 }
 
-const Total = ({done, total}) => {
+const Total = ({caloriesDone, caloriesTarget}) => {
     return(
-            <Text>Calories {done}/{total}</Text>
+            <Text>Calories {caloriesDone}/{caloriesTarget}</Text>
           )
 }
 
