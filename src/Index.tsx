@@ -1,5 +1,6 @@
-import * as React from 'react'
+import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import StoreProvider from "./store"
 
 // Pages
 import HomeScreen from './pages/HomeScreen'
@@ -11,6 +12,7 @@ const Tab = createBottomTabNavigator()
 
 export default function Index() {
     return(
+    <NavigationContainer> 
         <Tab.Navigator
         screenOptions = {{
             headerShown: false
@@ -33,6 +35,7 @@ export default function Index() {
                 component={SettingsScreen}
             />
         </Tab.Navigator>
+    </NavigationContainer> 
     )    
 }
 

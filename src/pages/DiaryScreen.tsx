@@ -5,10 +5,10 @@ import FoodDiary from '../components/FoodDiary'
 // TODO: Create button for adding meals and maybe also to edit
 export default function DiaryScreen({ navigation }) {
     return (
-            <View>
-                <Overview />
-                <FoodDiary />
-            </View>
+        <View>
+            <Overview />
+            <FoodDiary />
+        </View>
     )
 };
 

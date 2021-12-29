@@ -1,15 +1,11 @@
-import * as React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, ScrollView, Text, StyleSheet } from "react-native"
 
-import { meals } from "../data/data"
 
 export default function FoodDiary() {
     return(
-        <View style = {styles.container}>
-        {meals.map((meal, index) => (
-            <Meal meal={meal} />
-        ))}
-        </View>
+        <ScrollView style = {styles.container}>
+            <Text> This is the diary </Text>
+        </ScrollView>
       )
 }
 

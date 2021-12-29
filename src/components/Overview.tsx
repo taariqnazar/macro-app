@@ -1,4 +1,3 @@
-import * as React from "react"
 import { View, Text, StyleSheet } from 'react-native';
 import { caloriesFromMacro } from "../utils/utils"
 
