@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { Macronutrients } from "../types"
 import { useStore } from "../store"
 import { caloriesFromMacro, getMacrosFromMeals} from "../utils/utils"
 
 export default function Overview() {
     const [globalState, dispatch] = useStore()
 
-    let macronutrients = getMacrosFromMeals(globalState.user.diary)
-    let macronutrientsTarget = globalState.user.targets.macronutrients
-    let caloriesDone = caloriesFromMacro(macronutrients)
-    let caloriesTarget = caloriesFromMacro(macronutrientsTarget)   
+    let macronutrients:Macronutrients = getMacrosFromMeals(globalState.user.diary)
+    let macronutrientsTarget:Macronutrients = globalState.user.targets.macronutrients
+    let caloriesDone:number = caloriesFromMacro(macronutrients)
+    let caloriesTarget:number = caloriesFromMacro(macronutrientsTarget)   
 
     return (
            <View style = {styles.container} >
@@ -19,7 +20,7 @@ export default function Overview() {
 }
 
 
-function Macros({macronutrients, macronutrientsTarget}) {
+function Macros({macronutrients, macronutrientsTarget}:{macronutrients:Macronutrients , macronutrientsTarget:Macronutrients}) {
     return(
        <View style = {styles.macrosContainer}>
            {Object.entries(macronutrients).map(([key, _]) => (
@@ -32,12 +33,11 @@ function Macros({macronutrients, macronutrientsTarget}) {
           ) 
 }
 
-const Total = ({caloriesDone, caloriesTarget}) => {
+const Total = ({caloriesDone, caloriesTarget}:{caloriesDone:number , caloriesTarget:number}) => {
     return(
             <Text>Calories {caloriesDone}/{caloriesTarget}</Text>
           )
 }
-
 
 const styles = StyleSheet.create({
     container: {

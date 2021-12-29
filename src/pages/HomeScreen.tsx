@@ -1,7 +1,11 @@
-import { Text, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import Overview from "../components/Overview"
 
 export default function HomeScreen({ navigation }) {
     return (
-        <Text>This is the home screen</Text>
+        <View>
+            <Overview />
+            <Text>Home Screen</Text>
+        </View>
    );
 };
