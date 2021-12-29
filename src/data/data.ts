@@ -2,7 +2,7 @@ import { Meal, Item } from "../types"
 // Meals is a list of meal
 // meal is a list of food items
 
-const item:Item = {
+const popsicle:Item = {
     id: 0,
     name: 'Popsicle',
     macronutrients: {
@@ -24,13 +24,13 @@ const brocolli:Item = {
     id: 2,
     name: 'Brocolli',
     macronutrients: {
-        protein: 5,
+        protein: 15,
         carbohydrates: 15,
         fat: 0
     }
 }
 
-export const new_data = {
+export const data = {
     user: {
         name: "Tariq Nazar",
         age: 24,
@@ -39,9 +39,9 @@ export const new_data = {
             { //Meal: a meal is info about the specific meal and its items
                 timestamp: "xxx",
                 items: [
-                    item,
-                    item,
-                    item
+                    popsicle,
+                    chickenBreast,
+                    brocolli
                 ]
             }
         ],
@@ -56,6 +56,7 @@ export const new_data = {
         }
     },
     items: [
+        popsicle,
         chickenBreast,
         brocolli
     ],

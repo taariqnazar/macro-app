@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer } from 'react'
-import { new_data } from "./data/data"
+import { data } from "./data/data"
 
-const Store = createContext({})
-export const useStore = () => useContext(Store)
+const Store:any = createContext({})
+export const useStore:any = () => useContext(Store)
 
-const initialState = new_data
+const initialState = data
 const globalReducer = (state = initialState, action) => {
     switch(action.type){
         case "TEST": {
