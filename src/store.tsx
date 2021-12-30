@@ -7,11 +7,14 @@ export const useStore:any = () => useContext(Store)
 const initialState = data
 const globalReducer = (state = initialState, action) => {
     switch(action.type){
-        case "TEST": {
-            return state
+        case "ADD_MEAL": {
+             return {
+             ...state,
+             [state.user.diary]: state.user.diary.push(action.payload) 
+             }
         }
         default: {
-            return {}
+            throw new Error("No actions was passed.")
         }
     }
 }

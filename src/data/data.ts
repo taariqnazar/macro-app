@@ -35,16 +35,7 @@ export const data = {
         name: "Tariq Nazar",
         age: 24,
         weight: 108,
-        diary: [ //A diary is a list of meals objects.
-            { //Meal: a meal is info about the specific meal and its items
-                timestamp: "xxx",
-                items: [
-                    popsicle,
-                    chickenBreast,
-                    brocolli
-                ]
-            }
-        ],
+        diary: [],
         targets: {
             weight: 95,
             macronutrients: {

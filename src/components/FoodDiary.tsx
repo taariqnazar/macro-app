@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { Alert,
 Modal,
+SafeAreaView,
 Pressable,
+TextInput,
 View,
 ScrollView,
 Text,
@@ -10,13 +12,31 @@ StyleSheet } from "react-native"
 import { useStore } from "../store"
 import { Item, Meal } from "../types"
 
+const fuzzyStringSearch = (term, string) => {
+    var ratio = 0.5
+    var string = string.toLowerCase();
+    var compare = term.toLowerCase();
+    var matches = 0;
+    if (string.indexOf(compare) > -1) return true; // covers basic partial matches
+    for (var i = 0; i < compare.length; i++) {
+        string.indexOf(compare[i]) > -1 ? matches += 1 : matches -=1;
+    }
+    return (matches/string.length >= ratio || term == "");
+}
 export default function FoodDiary() {
     const [globalState, dispatch] = useStore()
     const [modalVisible, setModalVisible] = useState(false)
-    const [itemData, setItemData] = useState({pickerItem: "Unknown", items: []})
+    const [itemData, setItemData] = useState({items: []})
+    const [query, setQuery] = useState("")
 
     const meals:Meal[] = globalState.user.diary
     const items:Item[] = globalState.items
+
+    const addMeal = () => {
+        setModalVisible(!modalVisible)
+        dispatch({type:"ADD_MEAL", payload: {timestamp:"xxx", items: itemData.items }})
+        setItemData({items: []})
+    }
     return(
         <ScrollView style = {styles.container}>
             <Modal
@@ -29,24 +49,39 @@ export default function FoodDiary() {
             >
                 <View style={styles.modalView}>
                     <Pressable
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => {
+                            setModalVisible(!modalVisible)
+                            setItemData({items: []})
+                        }}
                     >
                     <Text>X</Text>
                     </Pressable>
-                    {items.map((item, index) => (
+                    <SafeAreaView>
+                        <TextInput 
+                            onChangeText={text => setQuery(text)}
+                            placeholder="search for item..."
+                            value={query}
+                        />
+                    </SafeAreaView>
+                    {items.filter( item => fuzzyStringSearch(query, item.name)).map((item, index) => (
                         <Pressable
                             key={item.name}
-                            onPress={(e) => console.log(e)}
-                            //onPress={() => setItemData((prevData) => ({...prevData, items: prevData.items.push(item)}), )}
+                            onPress={() => {
+                                setQuery("")
+                                setItemData(prevData => ({...prevData, [items]: prevData.items.push(item)}))
+                            }}
                         >
                             <Text>{item.name}</Text>
                         </Pressable>
                     ))}
-                    {itemData.items.length > -1
+                    {itemData.items.length > 0
                     ? 
                     <View>
                         <Text style={{fontWeight: 'bold',fontSize: 20, marginTop: 20}}>Meal:</Text>
-                        <Button title="Add Meal" onPress={() => ""}></Button>
+                        {itemData.items.map((item, index) => (
+                            <Text>{item.name}</Text>
+                        ))}
+                        <Button title="Add Meal" onPress={() => addMeal()}></Button>
                     </View>
                     : <></>}
                 </View>
